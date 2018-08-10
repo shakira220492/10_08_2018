@@ -1,0 +1,177 @@
+<style>
+    #amountLikesVideo {
+        position: absolute;
+        top: 35px;
+        left: 18px;
+    }
+    
+    #amountDislikesVideo {
+        position: absolute;
+        top: 55px;
+        left: 18px;
+    }
+    
+    #likeButton {
+        position: absolute;
+        top: 35px;
+        left: 0px;
+    }
+    
+    #dislikeButton {
+        position: absolute;
+        top: 55px;
+        left: 0px;
+    }
+    
+    #updateDateVideo {
+        position: absolute;
+        top: 80px;
+        left: 0px;
+    }
+    
+    #amountViewsVideo {
+        position: absolute;
+        top: 100px;
+        left: 0px;
+    }
+    
+    #descriptionVideo {
+        position: absolute;
+        top: 120px;
+        left: 0px;
+    }
+    
+    #reportsVideo {
+        position: absolute;
+        top: 140px;
+        left: 0px;
+    }
+    
+</style>
+
+<div id="amountLikesVideo">
+</div>
+
+<div id="amountDislikesVideo">
+</div>
+
+<div id='likeButton' class="animatedButton">
+    <img style="width:18px; height:18px;" 
+         src='files/images/icons/video/like.png' 
+         alt='Mountain View'>
+</div>
+
+<div id='dislikeButton' class="animatedButton">
+    <img style='width:18px; height:18px;' 
+         src='files/images/icons/video/dislike.png' 
+         alt='Mountain View'>
+</div>
+
+<div id="updateDateVideo">
+    update date video
+</div>
+
+<div id="amountViewsVideo">
+    amount views
+</div>
+
+<div id="descriptionVideo">
+    description
+</div>
+
+<div id="reportsVideo">
+    reports
+</div>
+
+<script>
+
+    var likeButton = document.getElementById('likeButton');
+    var dislikeButton = document.getElementById('dislikeButton');
+
+    likeButton.addEventListener("click", addLikeToVideo, false);
+    dislikeButton.addEventListener("click", addDislikeToVideo, false);
+
+    function addLikeToVideo()
+    {
+        var form = $('#add-like-video-ajax');
+        var url = form.attr('action');
+
+        var idUser = 1;
+        var idVideo = 1;
+        var amountLikes = 1;
+
+        $.post(url, {idUser: idUser, idVideo: idVideo, amountLikes: amountLikes}, function (data)
+        {
+            alert('SI FUNCIONA');
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+
+    function addDislikeToVideo()
+    {
+        var form = $('#add-dislike-video-ajax');
+        var url = form.attr('action');
+
+        var idUser = 1;
+        var idVideo = 1;
+        var amountDislikes = 1;
+
+        $.post(url, {idUser: idUser, idVideo: idVideo, amountDislikes: amountDislikes}, function (data)
+        {
+            alert('SI FUNCIONA');
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+</script>
+
+<script>
+    
+    var videoNameButton_var = document.getElementById("videoNameButton");
+    videoNameButton_var.addEventListener("click", printInfoVideo, false);
+    
+    function printInfoVideo() 
+    {
+        var form = $('#get-info-about-video-ajax');
+        var url = form.attr('action');
+
+        var user_name = "USER NAME";
+        var user_password = "USER PASSWORD";
+
+        $.post(url, {user_name: user_name, user_password: user_password}, function (data)
+        {
+            var videoId = data[0].videoId;
+            var videoName = data[0].videoName;
+            var videoDescription = data[0].videoDescription;
+            var videoImage = data[0].videoImage;
+            var videoContent = data[0].videoContent;
+            var videoUpdatedate = data[0].videoUpdatedate;
+            var videoAmountViews = data[0].videoAmountViews;
+            var videoLikes = data[0].videoLikes;
+            var videoDislikes = data[0].videoDislikes;
+            var userId = data[0].userId;
+            var userName = data[0].userName;
+            var userEmail = data[0].userEmail;
+            var userPassword = data[0].userPassword;
+            
+            var amountLikesVideo = document.getElementById("amountLikesVideo");
+            var amountDislikesVideo = document.getElementById("amountDislikesVideo");
+            var updateDateVideo = document.getElementById("updateDateVideo");
+            var amountViewsVideo = document.getElementById("amountViewsVideo");
+            var descriptionVideo = document.getElementById("descriptionVideo");
+            {#var reportsVideo = document.getElementById("reportsVideo");#}
+
+            amountLikesVideo.innerHTML = videoLikes;
+            amountDislikesVideo.innerHTML = videoDislikes;
+            updateDateVideo.innerHTML = videoUpdatedate;
+            amountViewsVideo.innerHTML = videoAmountViews;
+            descriptionVideo.innerHTML = "Description: " + videoDescription;
+            {#reportsVideo.innerHTML = userName;#}
+
+        }).fail(function () {
+            alert('ERROR... no funciona aun');
+        });
+    }
+    
+</script>

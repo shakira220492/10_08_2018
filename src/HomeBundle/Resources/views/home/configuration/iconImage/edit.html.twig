@@ -1,0 +1,78 @@
+<div id='editIconButton' class='animatedButton'
+     style="position: absolute;
+     height: 30px;
+     width: 30px;
+     top: 0px;
+     z-index: 1;">
+    <img style='
+         width:30px; 
+         height:30px; 
+         opacity: 0.9;
+         z-index: 1;' 
+         src="files/images/icons/configuration/edit.png" alt="Mountain View">
+</div>
+
+<script>
+    var editIconButton = document.getElementById('editIconButton');
+    editIconDiv.addEventListener("click", showEditArea, false);
+    
+    function showEditArea()
+    {
+        if (bgMode === "withBg")
+        {
+            document.getElementById('playBannerBgColor').style.transitionProperty = "all";
+            document.getElementById('playBannerBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('playBannerBgColor').style.opacity = 0;
+            
+            document.getElementById('configurationBarBgColor').style.transitionProperty = "all";
+            document.getElementById('configurationBarBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationBarBgColor').style.opacity = 0;
+            
+            document.getElementById('manageBgColor').style.transitionProperty = "all";
+            document.getElementById('manageBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('manageBgColor').style.opacity = 0;
+            
+            document.getElementById('configurationAreaBgColor').style.transitionProperty = "all";
+            document.getElementById('configurationAreaBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationAreaBgColor').style.opacity = 0;
+            
+            document.getElementById('listBarBgColor').style.transitionProperty = "all";
+            document.getElementById('listBarBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('listBarBgColor').style.opacity = 0;
+            
+            document.getElementById('sessionBgColor').style.transitionProperty = "all";
+            document.getElementById('sessionBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('sessionBgColor').style.opacity = 0;
+            
+            bgMode = "withoutBg";
+        } else if (bgMode === "withoutBg")
+        {
+            document.getElementById('playBannerBgColor').style.transitionProperty = "all";
+            document.getElementById('playBannerBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('playBannerBgColor').style.opacity = 0.2;
+            
+            document.getElementById('configurationBarBgColor').style.transitionProperty = "all";
+            document.getElementById('configurationBarBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationBarBgColor').style.opacity = 0.2;
+            
+            document.getElementById('manageBgColor').style.transitionProperty = "all";
+            document.getElementById('manageBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('manageBgColor').style.opacity = 0.2;
+            
+            document.getElementById('configurationAreaBgColor').style.transitionProperty = "all";
+            document.getElementById('configurationAreaBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationAreaBgColor').style.opacity = 0.2;
+            
+            document.getElementById('listBarBgColor').style.transitionProperty = "all";
+            document.getElementById('listBarBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('listBarBgColor').style.opacity = 0.2;
+            
+            document.getElementById('sessionBgColor').style.transitionProperty = "all";
+            document.getElementById('sessionBgColor').style.transitionDuration = 1 + "s";
+            document.getElementById('sessionBgColor').style.opacity = 0.2;
+            
+            bgMode = "withBg";
+        }
+                
+    }
+</script>

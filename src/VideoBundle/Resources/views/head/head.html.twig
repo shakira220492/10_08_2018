@@ -1,0 +1,44 @@
+{#<div id='videoNameButton' class="animatedButton">
+    Name of the video - description-VideoBundle
+</div>
+
+<div id='userNameButton' class="animatedButton">
+    Owner's video song - artist-VideoBundle
+</div>
+
+<script>
+    function getInfoAboutTheVideo()
+    {
+        var form = $('#get-info-about-video-ajax');
+        var url = form.attr('action');
+
+        var user_name = "USER NAME";
+        var user_password = "USER PASSWORD";
+
+        $.post(url, {user_name: user_name, user_password: user_password}, function (data)
+        {
+            var videoId = data[0].videoId;
+            var videoName = data[0].videoName;
+            var videoDescription = data[0].videoDescription;
+            var videoImage = data[0].videoImage;
+            var videoContent = data[0].videoContent;
+            var videoAmountViews = data[0].videoAmountViews;
+            var videoLikes = data[0].videoLikes;
+            var videoDislikes = data[0].videoDislikes;
+            var userId = data[0].userId;
+            var userName = data[0].userName;
+            var userEmail = data[0].userEmail;
+            var userPassword = data[0].userPassword;
+
+            var videoNameButton = document.getElementById("videoNameButton");
+            var userNameButton = document.getElementById("userNameButton");
+
+            videoNameButton.innerHTML = videoName;
+            userNameButton.innerHTML = userName;
+
+        }).fail(function () {
+            alert('ERROR... no funciona aun');
+        });
+    }
+    
+</script>#}

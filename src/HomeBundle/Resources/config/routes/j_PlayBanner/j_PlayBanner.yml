@@ -1,0 +1,9 @@
+show_previous_video_form:
+    path:     /showPreviousVideo
+    defaults: { _controller: PlayBannerBundle:Default:showPreviousVideo }
+    methods:  POST
+        
+show_next_video_form:
+    path:     /showNextVideo
+    defaults: { _controller: PlayBannerBundle:Default:showNextVideo }
+    methods:  POST

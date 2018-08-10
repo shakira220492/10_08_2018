@@ -1,0 +1,23 @@
+index_session:
+    path:     /session
+    defaults: { _controller: HomeBundle:i_Session:index }
+
+check_session_form:
+    path:     /checkSession
+    defaults: { _controller: HomeBundle:i_Session:checkSession }
+    methods:  POST
+    
+log_in_user_form:
+    path:     /logInUser
+    defaults: { _controller: HomeBundle:i_Session:logInUser }
+    methods:  POST    
+    
+log_out_user_form:
+    path:     /logOutUser
+    defaults: { _controller: HomeBundle:i_Session:logOutUser }
+    methods:  POST
+    
+re_log_in_form:
+    path:     /reLogIn
+    defaults: { _controller: HomeBundle:i_Session:reLogIn }
+    methods:  POST

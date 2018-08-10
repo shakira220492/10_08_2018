@@ -1,0 +1,27 @@
+<div id='qualityIconButton' class='animatedButton'
+     style="position: absolute;
+     height: 30px;
+     width: 30px;
+     top: 0px;
+     left: 60px;
+     z-index: 1;">
+    <img style='
+         width:30px; 
+         height:30px; 
+         opacity: 0.9;
+         z-index: 1;' 
+         src="files/images/icons/playBanner/quality.png" alt="Mountain View">
+</div>
+
+<script>
+    var qualityIconButton = document.getElementById("qualityIconButton");
+    
+    qualityIconButton.addEventListener("click", function () {
+        qualityIconFunction();
+    });
+    
+    function qualityIconFunction()
+    {
+        alert("QUALITY ICON!!! FUNCTION....");
+    }
+</script>

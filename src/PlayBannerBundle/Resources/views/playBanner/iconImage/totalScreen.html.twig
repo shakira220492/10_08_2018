@@ -1,0 +1,27 @@
+<div id='totalScreenIconButton' class='animatedButton'
+     style="position: absolute;
+     height: 30px;
+     width: 30px;
+     top: 0px;
+     left: 150px;
+     z-index: 1;">
+    <img style='
+         width:30px; 
+         height:30px; 
+         opacity: 0.9;
+         z-index: 1;' 
+         src="files/images/icons/playBanner/totalScreen.png" alt="Mountain View">
+</div>
+
+<script>
+    var totalScreenIconButton = document.getElementById("totalScreenIconButton");
+    
+    totalScreenIconButton.addEventListener("click", function () {
+        totalScreenIconFunction();
+    });
+    
+    function totalScreenIconFunction()
+    {
+        alert("TOTAL SCREEN ICON!!! FUNCTION....");
+    }
+</script>

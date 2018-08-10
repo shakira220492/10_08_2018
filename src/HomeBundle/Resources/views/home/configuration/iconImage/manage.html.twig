@@ -1,0 +1,59 @@
+<div id='manageIconButton' class='animatedButton'
+     style="position: absolute;
+     height: 30px;
+     width: 30px;
+     top: 0px;
+     z-index: 1;">
+    <img style='
+         width:30px; 
+         height:30px; 
+         opacity: 0.9;
+         z-index: 1;' 
+         src="files/images/icons/configuration/manage.png" alt="Mountain View">
+</div>
+
+<script>
+    var manageIconButton = document.getElementById('manageIconButton');
+    manageIconButton.addEventListener("click", showManageArea, false);
+    
+    function showManageArea()
+    {
+        if (mode === "visible")
+        {
+            document.getElementById('configurationArea').style.transitionProperty = "all";
+            document.getElementById('configurationArea').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationArea').style.top = "-1000px";
+            document.getElementById('configurationArea').style.bottom = "1000px";
+
+            document.getElementById('configurationBar').style.transitionProperty = "all";
+            document.getElementById('configurationBar').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationBar').style.top = "-1000px";
+            document.getElementById('configurationBar').style.bottom = "1000px";
+
+            document.getElementById('listBar').style.transitionProperty = "all";
+            document.getElementById('listBar').style.transitionDuration = 1 + "s";
+            document.getElementById('listBar').style.top = "-1000px";
+            document.getElementById('listBar').style.bottom = "1000px";
+
+            mode = "hide";
+        } else if (mode === "hide")
+        {
+            document.getElementById('configurationArea').style.transitionProperty = "all";
+            document.getElementById('configurationArea').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationArea').style.top = "30px";
+            document.getElementById('configurationArea').style.bottom = "40px";
+
+            document.getElementById('configurationBar').style.transitionProperty = "all";
+            document.getElementById('configurationBar').style.transitionDuration = 1 + "s";
+            document.getElementById('configurationBar').style.top = "30px";
+            document.getElementById('configurationBar').style.bottom = "40px";
+
+            document.getElementById('listBar').style.transitionProperty = "all";
+            document.getElementById('listBar').style.transitionDuration = 1 + "s";
+            document.getElementById('listBar').style.top = "30px";
+            document.getElementById('listBar').style.bottom = "40px";
+            
+            mode = "visible";
+        }
+    }
+</script>

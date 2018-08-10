@@ -1,0 +1,309 @@
+{{ form_start(get_user_specific_information_form_ajax, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': 'get-user-specific-information-ajax'|default('form')} }) }}
+{{ form_end(get_user_specific_information_form_ajax) }}
+
+<style>
+
+    #userInformation {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        height: 120px;
+        display: block;
+        font-size: smaller;
+        overflow-y: hidden;
+        overflow-x: hidden;
+    }
+    
+    #dataminingButton {
+        position: absolute;
+        top: 0px;
+        right: 30px;
+    }
+    
+    #historyButton {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+    
+    #name_profile_content {
+{#        background-color: #ccff00;#}
+        display: none;
+    }
+    
+    #followers_profile_content {
+{#        background-color: #cc33ff;#}
+        display: none;
+    }
+    
+    #following_profile_content {
+{#        background-color: #9933ff;#}
+        display: none;
+    }
+    
+    #videos_profile_content {
+{#        background-color: #ff3399;#}
+        display: none;
+    }
+    
+    #views_profile_content {
+{#        background-color: #99ffff;#}
+        display: none;
+    }
+    
+    #dataminingSongs {
+{#        background-color: #2EA265;#}
+        display: none;
+    }
+    
+    #historySongs {
+{#        background-color: #DE3152;#}
+        display: none;
+    }
+    
+    #specificListSongs {
+{#        background-color: #1ab7ea;#}
+        display: none;
+    }
+    
+    .profile_content {
+        position: absolute;
+        top: 120px;
+        right: 0px;
+        left: 0px;
+        bottom: 0px;
+        overflow-y: scroll;
+    }
+</style>
+
+<div id="userInformation">
+    
+    <div id="name_profile" class="animatedButton">
+    </div>
+    <div id="followers_profile" class="animatedButton">
+    </div>
+    <div id="following_profile" class="animatedButton">
+    </div>
+    <div id="playlist_profile" class="animatedButton">
+    </div>
+    <div id="videos_profile" class="animatedButton">
+    </div>
+    <div id="views_profile" class="animatedButton">
+    </div>
+    <div id="dataminingButton" class="animatedButton">
+        <img style='
+        width:30px; 
+        height:30px; 
+        opacity: 0.9;' 
+        src="files/images/icons/presentation/search.png" alt="Mountain View">
+    </div>
+    <div id="historyButton" class="animatedButton">
+        <img style='
+        width:30px; 
+        height:30px; 
+        opacity: 0.9;' 
+        src="files/images/icons/presentation/search.png" alt="Mountain View">
+    </div>
+</div>
+
+
+
+{# CONTENT... #}
+
+<div id="name_profile_content" class="profile_content">
+    {{ include('@EditProfile/Default/index.html.twig') }}
+{#    LINK TO CONTACT INFORMATION:
+    EMAIL, 
+    COUNTRY, CITY
+    MESSAGES, 
+    PROFILE PHOTO, 
+    PAYPAL,
+    EDIT INFO, 
+    LIST USER'S VIDEOS (EDIT VIDEO'S PROPERTIERS)#}
+</div>
+
+<div id="followers_profile_content" class="profile_content">
+    {{ include('@Follower/Default/index.html.twig') }}
+{#    LINK TO THE MAINLY FOLLOWERS' USERS' LISTS, SONGS AND REPORTS - ANOTHER BUNDLE#}
+</div>
+
+<div id="following_profile_content" class="profile_content">
+    {{ include('@Following/Default/index.html.twig') }}
+{#    LINK TO THE INFLUENCERS' USERS' LISTS, SONGS AND REPORTS - ANOTHER BUNDLE#}
+</div>
+
+<div id="videos_profile_content" class="profile_content">
+    {{ include('@EditVideo/Default/index.html.twig') }}
+{#    LINK TO THE USER'S VIDEOS, WIDTH SPECIFIC INFORMATION - ANOTHER BUNDLE#}
+</div>
+
+<div id="views_profile_content" class="profile_content">
+    {{ include('@UserReports/Default/index.html.twig') }}
+{#    LINK TO THE USER'S LATEST STATISTICS - ANOTHER BUNDLE#}
+</div>
+
+<div id="dataminingSongs" class="profile_content">
+    {{ include('@Datamining/Default/index.html.twig') }}
+{#    LINK TO DATAMINING (new videos BY DATAMINING)#}
+</div>
+
+<div id="historySongs" class="profile_content">
+    {{ include('@History/Default/index.html.twig') }}
+{#    LINK TO HISTORY (CACHE LIST)#}
+</div>
+
+<div id="specificListSongs" class="profile_content">
+    {{ include('@List/Default/index.html.twig') }}
+{#    LINK TO THE USER'S SPECIFIC PLAYLISTS - ANOTHER BUNDLE#}
+</div>
+
+<script>
+    
+    window.onload = getUserSpecificInformation();
+    
+    function getUserSpecificInformation()
+    {
+        var form = $('#get-user-specific-information-ajax');
+        var url = form.attr('action');
+
+        $.post(url, function (data)
+        {
+            var userId = data[0].userId;
+            var userName = data[0].userName;
+            var userFirstgivenname = data[0].userFirstgivenname;
+            var userSecondgivenname = data[0].userSecondgivenname;
+            var userFirstfamilyname = data[0].userFirstfamilyname;
+            var userSecondfamilyname = data[0].userSecondfamilyname;
+            var userEmail = data[0].userEmail;
+            var userPassword = data[0].userPassword;
+            var userBiography = data[0].userBiography;
+            var amountFollowers = data[0].amountFollowers;
+            var amountInfluencers = data[0].amountInfluencers;
+            var amountViews = data[0].amountViews;
+            var amountVideos = data[0].amountVideos;
+            var amountSpecificLists = data[0].amountSpecificLists;
+            
+            var name_profile = document.getElementById("name_profile");
+            var followers_profile = document.getElementById("followers_profile");
+            var following_profile = document.getElementById("following_profile");
+            var playlist_profile = document.getElementById("playlist_profile");
+            var videos_profile = document.getElementById("videos_profile");
+            var views_profile = document.getElementById("views_profile");
+          
+            name_profile.innerHTML = userFirstgivenname + " " + userSecondgivenname + " " + userFirstfamilyname + " " + userSecondfamilyname; 
+            followers_profile.innerHTML = "FOLLOWERS: "+amountFollowers;
+            following_profile.innerHTML = "FOLLOWING: "+amountInfluencers; 
+            playlist_profile.innerHTML = "LISTS: "+amountSpecificLists; 
+            videos_profile.innerHTML = "VIDEOS: "+amountVideos; 
+            views_profile.innerHTML = "VIEWS: "+amountViews; 
+            
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+</script>
+    
+<script>
+    var name_profile = document.getElementById("name_profile");
+    name_profile.addEventListener("click", drawInfoProfile, false);
+    
+    var followers_profile = document.getElementById("followers_profile");
+    followers_profile.addEventListener("click", drawFollowersProfile, false);
+    
+    var following_profile = document.getElementById("following_profile");
+    following_profile.addEventListener("click", drawFollowingProfile, false);
+    
+    var playlist_profile = document.getElementById("playlist_profile");
+    playlist_profile.addEventListener("click", drawSpecificlistProfile, false);
+    
+    var videos_profile = document.getElementById("videos_profile");
+    videos_profile.addEventListener("click", drawVideosProfile, false);
+    
+    var views_profile = document.getElementById("views_profile");
+    views_profile.addEventListener("click", drawViewsProfile, false);
+    
+    var dataminingButton = document.getElementById("dataminingButton");
+    dataminingButton.addEventListener("click", drawDataminingSongs, false);
+    
+    var historyButton = document.getElementById("historyButton");
+    historyButton.addEventListener("click", drawHistorySongs, false);
+    
+    function clearOptionsFromProfile()
+    {
+        var name_profile_content = document.getElementById("name_profile_content");
+        var followers_profile_content = document.getElementById("followers_profile_content");
+        var following_profile_content = document.getElementById("following_profile_content");
+        var videos_profile_content = document.getElementById("videos_profile_content");
+        var views_profile_content = document.getElementById("views_profile_content");
+        var dataminingSongs = document.getElementById("dataminingSongs");
+        var historySongs = document.getElementById("historySongs");
+        var specificListSongs = document.getElementById("specificListSongs");
+        
+        name_profile_content.style.display = "none";
+        followers_profile_content.style.display = "none";
+        following_profile_content.style.display = "none";
+        videos_profile_content.style.display = "none";
+        views_profile_content.style.display = "none";
+        dataminingSongs.style.display = "none";
+        historySongs.style.display = "none";
+        specificListSongs.style.display = "none";
+    }
+
+    function drawInfoProfile()
+    {
+        clearOptionsFromProfile();
+        var name_profile_content = document.getElementById("name_profile_content");
+        name_profile_content.style.display = "block";
+    }
+
+    function drawFollowersProfile()
+    {
+        clearOptionsFromProfile();
+        var followers_profile_content = document.getElementById("followers_profile_content");
+        followers_profile_content.style.display = "block";
+    }
+
+    function drawFollowingProfile()
+    {
+        clearOptionsFromProfile();
+        var following_profile_content = document.getElementById("following_profile_content");
+        following_profile_content.style.display = "block";
+    }
+
+    function drawSpecificlistProfile()
+    {
+        clearOptionsFromProfile();
+        var specificListSongs = document.getElementById("specificListSongs");
+        specificListSongs.style.display = "block";
+    }
+    
+    function drawVideosProfile()
+    {
+        clearOptionsFromProfile();
+        var videos_profile_content = document.getElementById("videos_profile_content");
+        videos_profile_content.style.display = "block";
+    }
+    
+    function drawViewsProfile()
+    {
+        clearOptionsFromProfile();
+        var views_profile_content = document.getElementById("views_profile_content");
+        views_profile_content.style.display = "block";
+    }
+
+    function drawDataminingSongs()
+    {
+        clearOptionsFromProfile();
+        var dataminingSongs = document.getElementById("dataminingSongs");
+        dataminingSongs.style.display = "block";
+    }
+    
+    function drawHistorySongs()
+    {
+        clearOptionsFromProfile();
+        var historySongs = document.getElementById("historySongs");
+        historySongs.style.display = "block";
+    }
+
+</script>

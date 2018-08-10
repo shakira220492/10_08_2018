@@ -1,0 +1,32 @@
+<div id='nextIconButton' class='animatedButton'
+     style="position: absolute;
+     height: 30px;
+     width: 30px;
+     top: 0px;
+     left: 360px;
+     z-index: 1;">
+    <img style='
+         width:30px; 
+         height:30px; 
+         opacity: 0.9;
+         z-index: 1;' 
+         src="files/images/icons/playBanner/next.png" alt="Mountain View">
+</div>
+
+<script>
+    var nextIconButton = document.getElementById('nextIconButton');
+    nextIconButton.addEventListener("click", showNextVideo, false);
+    
+    function showNextVideo()
+    {
+        var form = $('#show-next-video-ajax');
+        var url = form.attr('action');
+
+        $.post(url, function (data)
+        {
+            alert("SHOW NEXT VIDEO WORKS");
+        }).fail(function () {
+            alert('ERROR');
+        });
+    }
+</script>

@@ -1,0 +1,68 @@
+{{ form_start(get_followers_profile_form_ajax, { 'attr' : {'novalidate': 'novalidate', 'role' : 'form', 'id': 'get-followers-profile-ajax'|default('form')} }) }}
+{{ form_end(get_followers_profile_form_ajax) }}
+
+<style>
+    #idFollowers {
+        
+    }
+</style>
+
+<div id="idFollowersBundle">
+    
+</div>
+
+<script>
+    
+    function FollowerBundle()
+    {
+        getFollowersProfile();
+    }
+    
+    // pasar a su respectivo bundle; este bundle se activa (refresca) solamente cuando el usuario inicia la sesion... o en un intervalo de 1 hora
+    function getFollowersProfile()
+    {
+{#        alert("getFollowersProfile");#}
+        
+        var form = $('#get-followers-profile-ajax');
+        var url = form.attr('action');
+
+        $.post(url, function (data)
+        {
+            var amountFollowers = data[0].amountFollowers;
+            for (i = 0; i < amountFollowers; i++)
+            {
+                var userId = data[i].userId;
+                var userName = data[i].userName;
+                var userFirstgivenname = data[i].userFirstgivenname;
+                var userSecondgivenname = data[i].userSecondgivenname;
+                var userFirstfamilyname = data[i].userFirstfamilyname;
+                var userSecondfamilyname = data[i].userSecondfamilyname;
+                var userEmail = data[i].userEmail;
+                var userPassword = data[i].userPassword;
+                var userBiography = data[i].userBiography;
+                var amountFollowers = data[i].amountFollowers;
+                                
+                $("#idFollowersBundle").append(
+                    "<div>"+
+                        "... "+userId+"<br>"+
+                        "... "+userName+"<br>"+
+                        "... "+userFirstgivenname+"<br>"+
+                        "... "+userSecondgivenname+"<br>"+
+                        "... "+userFirstfamilyname+"<br>"+
+                        "... "+userSecondfamilyname+"<br>"+
+                        "... "+userEmail+"<br>"+
+                        "... "+userPassword+"<br>"+
+                        "... "+userBiography+"<br>"+
+                        "... "+amountFollowers+"<br>"+
+                    "</div>"
+                );                
+            }
+    
+    
+                    
+        }).fail(function () {
+            alert('GET FOLLOWERS PROFILE ERROR');
+        });
+        
+    }
+</script>
